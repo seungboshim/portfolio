@@ -1,0 +1,390 @@
+<title>심승보 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#F7F8FA; --paper:#FFFFFF;
+    --ink:#1D1D1F; --ink2:#4A4A4E; --ink3:#8A8A8E; --ink4:#B4B4B8;
+    --coral:#E8756B; --coral-soft:#F2ADA6;
+    --rule:#2B2B2E; --hair:#E2E3E7;
+    --hl-mint:#A8E6D0; --hl-yellow:#FFE9A8; --hl-sky:#AFDCF5; --hl-coral:#F6C3BE;
+    --pad:5.6%;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    word-break:keep-all; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .deck{scroll-snap-type:y mandatory; overflow-y:auto; height:100vh}
+  .slide{
+    scroll-snap-align:start;
+    width:100%; max-width:1600px; margin:0 auto;
+    aspect-ratio:16/9; min-height:420px;
+    padding:var(--pad);
+    display:flex; flex-direction:column;
+    background:var(--bg);
+    position:relative;
+  }
+  /* ---- 공통 타이포 ---- */
+  h1{font-size:clamp(28px,3.4vw,54px); font-weight:700; letter-spacing:-.02em; line-height:1.25; margin:0; text-wrap:balance}
+  h1 .thin{font-weight:400; color:var(--ink2); display:block; font-size:.62em; margin-bottom:.35em; letter-spacing:-.01em}
+  .kicker{font-size:clamp(20px,2.3vw,34px); font-weight:700; letter-spacing:-.02em; margin:0}
+  .lede{font-size:clamp(12px,1.05vw,17px); color:var(--ink2); margin:0; max-width:34em}
+  .meta{font-size:clamp(10px,.82vw,13px); color:var(--ink3); letter-spacing:.01em}
+  b{font-weight:700; color:var(--ink)}
+  /* ---- 슬라이드 머리 ---- */
+  .head{display:flex; align-items:center; gap:1.4em; margin-bottom:clamp(18px,3vh,52px)}
+  .head .rule{flex:1; height:1.5px; background:var(--rule); opacity:.85}
+  .head .right{font-size:clamp(14px,1.5vw,24px); font-weight:700; letter-spacing:-.01em}
+  /* ---- 좌라벨 2열 ---- */
+  .rows{display:flex; flex-direction:column; gap:clamp(14px,2.6vh,40px)}
+  .row{display:grid; grid-template-columns:minmax(96px,14%) 1fr; gap:clamp(16px,2.4vw,44px); align-items:start}
+  .row > .label{font-size:clamp(12px,1.15vw,19px); font-weight:700; letter-spacing:-.01em; padding-top:.1em}
+  .row > .body{font-size:clamp(11px,.98vw,16px); color:var(--ink2); display:flex; flex-direction:column; gap:.55em}
+  .mark{background-size:100% .42em; background-repeat:no-repeat; background-position:0 88%; padding:0 .08em}
+  .m1{background-image:linear-gradient(var(--hl-mint),var(--hl-mint))}
+  .m2{background-image:linear-gradient(var(--hl-yellow),var(--hl-yellow))}
+  .m3{background-image:linear-gradient(var(--hl-sky),var(--hl-sky))}
+  .m4{background-image:linear-gradient(var(--hl-coral),var(--hl-coral))}
+  /* ---- 표지 ---- */
+  .cover{display:grid; grid-template-columns:clamp(140px,17%,300px) 1fr auto; gap:clamp(20px,3vw,64px); align-items:start}
+  .cover img{width:100%; max-width:100%; display:block}
+  .contact{display:flex; flex-direction:column; gap:.7em; text-align:right; font-size:clamp(10px,.9vw,15px); color:var(--ink2)}
+  .contact .ph{color:var(--ink4)}
+  .factgrid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2.2vw,40px); margin-top:clamp(20px,4vh,56px)}
+  .fact{display:grid; grid-template-columns:minmax(74px,26%) 1fr; gap:clamp(12px,1.6vw,28px); align-items:start}
+  .fact .k{font-size:clamp(11px,1.05vw,17px); font-weight:700}
+  .fact .v{display:flex; flex-direction:column; gap:.9em; font-size:clamp(10px,.9vw,14px)}
+  .fact .v i{font-style:normal; display:block; color:var(--ink3); font-size:.92em}
+  /* ---- Skills ---- */
+  .pill{display:inline-flex; align-items:baseline; gap:.5em; color:var(--coral); font-weight:700; font-size:clamp(12px,1.15vw,19px)}
+  .track{display:flex; align-items:center; gap:.8em; margin:.5em 0 clamp(14px,2.4vh,34px)}
+  .track .dot{width:.62em; height:.62em; border-radius:50%; background:var(--coral); flex:none}
+  .track .line{flex:1; height:1.5px; background:var(--rule); opacity:.8}
+  .skillgrid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2.4vw,44px) clamp(20px,3vw,64px)}
+  .sk{display:flex; flex-direction:column; gap:.3em}
+  .sk .n{font-size:clamp(12px,1.1vw,18px); font-weight:700}
+  .sk .d{font-size:clamp(10px,.88vw,14px); color:var(--ink2)}
+  /* ---- 프로젝트 본문 ---- */
+  .proj{display:flex; flex-direction:column; gap:clamp(10px,1.9vh,26px); max-width:64em}
+  .proj p{margin:0; font-size:clamp(11px,.98vw,16px); color:var(--ink2)}
+  .proj ul{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:clamp(8px,1.4vh,18px); font-size:clamp(10px,.93vw,15px); color:var(--ink2)}
+  .proj li::marker{color:var(--coral)}
+  .stack{display:flex; flex-wrap:wrap; gap:.45em; font-size:clamp(9px,.78vw,12.5px); color:var(--ink3)}
+  .stack span{border:1px solid var(--hair); border-radius:999px; padding:.22em .75em; background:var(--paper)}
+  /* ---- 마무리 ---- */
+  .links{display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2.4vw,40px)}
+  .lk{display:flex; flex-direction:column; gap:.25em; padding-bottom:.9em; border-bottom:1px solid var(--hair)}
+  .lk .t{font-size:clamp(12px,1.08vw,18px); font-weight:700}
+  .lk .u{font-size:clamp(10px,.85vw,13.5px); color:var(--coral)}
+  .lk .d{font-size:clamp(10px,.85vw,13.5px); color:var(--ink2)}
+  .foot{margin-top:auto; display:flex; justify-content:space-between; align-items:flex-end; font-size:clamp(9px,.8vw,13px); color:var(--ink3)}
+  /* ---- 반응형 ---- */
+  @media (max-width:820px){
+    .deck{scroll-snap-type:none; height:auto}
+    .slide{aspect-ratio:auto; min-height:0; padding:28px 20px; gap:8px}
+    .cover{grid-template-columns:1fr; gap:18px}
+    .cover img{max-width:150px}
+    .contact{text-align:left}
+    .factgrid,.skillgrid,.links{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr; gap:6px}
+  }
+  @media print{
+    @page{size:297mm 167mm; margin:0}
+    .deck{height:auto; overflow:visible}
+    .slide{break-after:page; aspect-ratio:16/9; max-width:none}
+    .slide:last-child{break-after:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="deck">
+
+  <!-- 1. 표지 -->
+  <section class="slide">
+    <div class="cover">
+      <img src="photo.png" alt="심승보 프로필 사진">
+      <div>
+        <h1><span class="thin">경계를 정하는</span>심승보 입니다.</h1>
+        <p class="lede" style="margin-top:1.4em">
+          모빌리티 스타트업의 <b>유일한 프론트엔드 개발자</b>로 프로덕트 7개를 초기 세팅부터 운영까지 맡았고, 기획서와 디자인 가이드가 없는 제품은 UX 기획과 UI 디자인까지 맡았습니다.<br>
+          설계한 화면 <b>1건을 GUI 디자인 특허로 출원했습니다.</b>
+          지금은 서버와 전사 인프라 유지보수도 함께 보고 있습니다.
+        </p>
+      </div>
+      <div class="contact">
+        <div>fodo9898@gmail.com</div>
+        <div>github.com/seungboshim</div>
+        <div>github.com/fromshim</div>
+        <div>velog.io/@seungboshim</div>
+      </div>
+    </div>
+
+    <div class="factgrid">
+      <div style="display:flex; flex-direction:column; gap:clamp(14px,2.4vh,34px)">
+        <div class="fact">
+          <div class="k">Career</div>
+          <div class="v">
+            <div>iconX inc. · 프론트엔드 개발자<i>인턴 2025.04 – 2025.09 · 정규직 2025.10 –</i></div>
+          </div>
+        </div>
+        <div class="fact">
+          <div class="k">Education</div>
+          <div class="v">
+            <div>인하대학교 정보통신공학과<i>2018.03 – 2024.08</i></div>
+            <div>LG U+ URECA SW교육 프론트엔드 1기<i>2024.06 – 2024.12 · 1,080시간</i></div>
+            <div>UMC 대학생 연합 개발 동아리 3–6기<i>5기 인하대 WEB 파트장</i></div>
+          </div>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="k">Licence<br>&amp; Awards</div>
+        <div class="v">
+          <div>SQLD · OPIc IM1<i>2024.06</i></div>
+          <div>GUI 디자인 특허 1건 출원<i>2026.01 · 설계한 화면</i></div>
+          <div>창의적 종합설계 경진대회 산업통상자원부장관상<i>2024.11 · 모두의 택시</i></div>
+          <div>인하공학페스티벌 종합설계 금상<i>2024.09 · 모두의 택시</i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Between -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Between</div><div class="rule"></div><div class="right">사이에 있는 것들</div></div>
+    <div class="rows">
+      <div class="row">
+        <div class="label" style="color:var(--coral)">프론트와<br>백 사이</div>
+        <div class="body">
+          <div>프론트엔드로 시작했는데 지금은 <span class="mark m3">서버와 전사 인프라 유지보수도 함께 맡고</span> 있습니다. Kotlin 도 Terraform 도 처음이라 코드는 AI 와 함께 다루고, 문법을 외우는 대신 시스템이 무엇을 어디서 처리하는지부터 파악했습니다.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label" style="color:var(--coral)">앱과<br>웹 사이</div>
+        <div class="body">
+          <div>웹 제품을 WebView 하이브리드 앱으로 확장하면서 <span class="mark m4">이 경계가 생각보다 훨씬 어렵다는 걸 알았습니다.</span></div>
+          <div>화면 전환 하나를 네이티브가 가로챌 수 있는지부터 걸렸고, 앱을 켜둔 채 한참 뒤 돌아오면 OS 가 메모리를 회수해 웹뷰가 흰 화면으로 남는 문제도 있었습니다. 구현하다 보니 점점 욕심이 생기는 영역입니다.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label" style="color:var(--coral)">사람과<br>사람 사이</div>
+        <div class="body">
+          <div>담당자 공백에 서버와 인프라를 넘겨받아 서버는 PM 과 함께 봤습니다. 낡은 문서와 하네싱을 고치며 다음 사람이 잘 이해할 수 있도록 노력했습니다.</div>
+          <div><span class="mark m2">인수인계가 사람의 기억이 아니라 문서와 시스템으로 끝나게</span> 하고 싶습니다. 다음 사람이 같은 자리에서 헤매지 않는 것이 제가 생각하는 좋은 시스템입니다.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label" style="color:var(--coral)">사람과<br>에이전트 사이</div>
+        <div class="body">
+          <div>무엇이든 만들어두고 계속 다듬습니다. 사내에서 에이전트가 일할 환경도 누가 작업해도 일정한 결과가 나오는 것을 목표로 계속 다듬고 있고, 아직 만족스럽지 않습니다.</div>
+          <div><span class="mark m1">에이전트는 맡겨두면 알아서 굴러가는 게 아니라 꾸준히 사람 손을 타야 한다고 봅니다.</span> 그래서 에이전트가 쓴 코드가 리뷰와 테스트를 거친 뒤에야 사람에게 병합을 요청하도록 작업 퍼널을 설계했습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Skills -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Skills</div><div class="rule"></div></div>
+
+    <div class="pill">직접 사용해요</div>
+    <div class="track"><div class="dot"></div><div class="line"></div></div>
+    <div class="sk" style="margin-bottom:clamp(12px,2.2vh,30px)">
+      <div class="n"><span class="mark m3">Claude Code · Codex CLI</span></div>
+    </div>
+    <div class="skillgrid" style="margin-bottom:clamp(16px,3vh,40px)">
+      <div class="sk">
+        <div class="n">TypeScript · React · Next.js</div>
+        <div class="d">제품 일곱 개의 프론트엔드를 초기 세팅부터 운영까지 맡았습니다. 에러 처리 체계는 앞 제품 것을 그대로 옮기지 않고 매번 새로 세워 적용했습니다. rescoop 부터는 코드를 AI 가 쓰고 저는 설계와 검증을 맡았습니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n"><span class="mark m1">SvelteKit</span></div>
+        <div class="d">어드민에 동료가 제안한 SvelteKit 을 처음 익혀 만들었습니다. React 습관을 걷어내고 form action 과 라우터를 그쪽 방식으로 썼습니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n"><span class="mark m2">React Native · Expo</span></div>
+        <div class="d">웹 제품을 WebView 하이브리드 앱으로 확장해 App Store 에 올렸습니다. 이 앱의 코드는 AI 가 썼고 저는 웹과 앱의 경계 설계와 검증을 맡았습니다. 학생 시절에는 RN 으로 iOS 앱을 직접 만들어 심사를 통과했습니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n"><span class="mark m4">TanStack Query</span></div>
+        <div class="d">SSR 과 클라이언트 캐시를 맞물리는 방식을 네 번 고치며, 서버가 요청마다 새 QueryClient 를 만든다는 근본 원인을 찾았습니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n">Figma · UI/UX 설계</div>
+        <div class="d">기획서와 디자인 가이드가 없던 drivL 어드민과 fleeting 은 화면 설계부터 맡았고, fleeting 에서는 Figma 로 디자인 시스템과 컴포넌트 구조를 설계했습니다. rescoop 은 디자이너가 잡은 토큰과 타이포그래피 위에서 화면을 새로 디자인했습니다.</div>
+      </div>
+    </div>
+
+    <div class="pill">AI 와 함께 유지보수해요</div>
+    <div class="track"><div class="dot"></div><div class="line"></div></div>
+    <div class="skillgrid">
+      <div class="sk">
+        <div class="n">Kotlin · Spring</div>
+        <div class="d">담당자 공백에 서버 유지보수를 이어받았습니다. 코드는 AI 가 쓰고, 저는 시스템이 무엇을 어디서 처리하는지 구조를 파악하고 변경을 판단합니다. 서버는 PM 과 함께 봅니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n">Kubernetes(EKS) · Terraform</div>
+        <div class="d">전사 인프라 유지보수를 맡고 있고 코드는 AI 가 씁니다. 되돌릴 수 없는 작업은 사람이 실행하도록 떼어놨습니다.</div>
+      </div>
+      <div class="sk">
+        <div class="n">pino · Loki · Grafana</div>
+        <div class="d">로그를 찍어 Grafana 에서 점검합니다. Grafana MCP 와 슬랙 알림으로 문제를 찾아 고쳐봤습니다.</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div>도메인 &nbsp;·&nbsp; 차량 E2E 통신(MQTT, AIDL, CAN), 차량 제어기 구조</div>
+      <div></div>
+    </div>
+  </section>
+
+  <!-- 3. drivL -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">drivL / drivL admin</div></div>
+    <div class="proj">
+      <div class="meta">2025.07 – 현재 · 2026.02 출시</div>
+      <p>차량 CAN 데이터에서 급가속·급제동 같은 이벤트를 뽑아 <b>운전 점수를 매겨주는 서비스</b>입니다. 사용자용 웹앱(Next.js)과 운영 어드민(SvelteKit)을 혼자 맡았습니다. 어드민은 기획서와 디자인 가이드 없이 UX 기획과 UI 디자인부터 시작했고, SvelteKit 은 동료가 제안해 처음 익혀 썼습니다.</p>
+      <ul>
+        <li>어드민에서 테스트 차량의 주행을 지도 위에 데이터와 함께 보여주는 화면을 만들었고, <b class="mark m1">이 화면을 GUI 디자인 특허로 출원했습니다</b></li>
+        <li>경로와 이벤트는 페이지를 열 때 받아 지도를 바로 그리고, 양이 많은 50Hz 센서값은 SSE 로 뒤에서 받아 500ms 씩 모아 반영해 리렌더를 줄임. 1Hz 경로와 50Hz 센서값은 인덱스가 맞지 않아 타임스탬프 기준 최근접 매칭으로 연결</li>
+        <li>사용자 웹앱은 SSR 과 클라이언트 캐시를 맞물리는 방식을 네 번 고쳐 세운 끝에, 서버가 요청마다 새 QueryClient 를 만든다는 근본 원인에 닿아 클라이언트 캐시 정책을 SSR 에 복사하지 않는 원칙으로 정리</li>
+        <li>사용자에게 노출할 에러를 두 가지로 좁히고 ErrorBoundary 와 Suspense 조합을 재사용 가능한 컴포넌트로 분리</li>
+      </ul>
+      <div class="stack"><span>Next.js</span><span>TanStack Query</span><span>SvelteKit</span><span>ApexCharts</span><span>SSE</span></div>
+    </div>
+  </section>
+
+  <!-- 4. rescoop -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">rescoop</div></div>
+    <div class="proj">
+      <div class="meta">2026.04 – 현재 · app.rescoop.ai</div>
+      <p>인스타그램·유튜브·메일에 흩어진 메시지와 댓글을 <b>한 화면에 모아 AI 로 분류하는 서비스</b>입니다. 화면 디자인과 웹·앱 프론트엔드, OAuth 연동을 맡았고 웹 제품을 WebView 하이브리드 앱으로 확장해 App Store 에 출시했습니다. 2026.04 착수부터 코드는 대부분 AI 가 썼고, 저는 설계와 검증, 판단을 맡았습니다.</p>
+      <ul>
+        <li>디자이너가 디자인 토큰과 타이포그래피를 잡으면 그 위에서 화면을 새로 디자인했고, 사내 회의에서 받은 요청은 회의 중에 바로 고치거나 다음 회의까지 반영해 다시 보여주기를 반복</li>
+        <li>신기능을 낼 때는 여러 경우의 수로 UI/UX 프로토타입을 준비해 경영진이 빠르게 결정하도록 도움</li>
+        <li><b class="mark m3">Meta 와 Google 의 플랫폼 심사를 거쳐 실서비스로 런칭</b></li>
+        <li>앱을 켜둔 채 한참 뒤 돌아오면 OS 가 메모리를 회수해 웹뷰가 흰 화면으로 남는 문제는, 웹뷰가 죽은 신호를 받거나 앱 복귀 때 응답이 없으면 다시 띄우도록 고침</li>
+        <li>pnpm workspace 로 웹과 앱의 공통 모듈을 묶고, 화면은 웹이 그리고 앱은 껍데기와 OAuth 만 맡도록 경계를 정리</li>
+      </ul>
+      <div class="stack"><span>Next.js</span><span>pnpm workspace</span><span>Expo</span><span>React Native WebView</span><span>OAuth 2.0</span></div>
+    </div>
+  </section>
+
+  <!-- 5. 국책과제 -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">국책과제 · 차량 데이터 기반 정부 R&amp;D 과제</div></div>
+    <div class="proj">
+      <div class="meta">2025.04 – 현재</div>
+      <p>입사와 함께 <b>차량 데이터 기반 정부 R&amp;D 과제</b>에 참여해 지금까지 이어가고 있습니다. 서드파티 서버부터 차량 ECU 까지 차량 데이터가 흐르는 전체 경로를 구간별로 직접 정리하며 공부했고, 여러 참여기관이 모이는 회의와 워크샵에 참여했습니다.</p>
+      <ul>
+        <li>서드파티 서버에서 클라우드 게이트웨이(MQTT·REST), 차량 내 제어기, 제어기 위 Android 앱까지 이어지는 통신 구조를 데이터 흐름 문서로 작성</li>
+        <li>과제 핵심 산출물인 관제 플랫폼과 도로 이상현상 알림 플랫폼의 프론트엔드 개발</li>
+        <li>2026년 초 급하게 요청받은 실증용 Android 앱을 AI 로 구현해 1주 만에 냄. 요건 파악과 검증을 맡았고 동료들에게 신뢰감을 주었다는 평을 받음</li>
+      </ul>
+      <div class="stack"><span>React</span><span>Android</span><span>MQTT</span><span>AIDL</span><span>CAN</span></div>
+    </div>
+  </section>
+
+  <!-- 6. 백엔드·인프라 -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">백엔드 · 인프라 유지보수</div></div>
+    <div class="proj">
+      <div class="meta">2026.08 – 현재</div>
+      <ul>
+        <li>백엔드 담당자 공백으로 인해 서버는 PM 과 공동, 전사 EKS 인프라는 단독으로 유지보수를 이어받아 작업</li>
+        <li>이 구간의 코드는 AI 가 쓰고, 저는 처음 접한 백엔드 구조와 인프라 설계를 공부하며 시스템 구조 파악과 변경 판단을 담당</li>
+        <li>서버 하네스의 배선을 다시 설계</li>
+        <li>dev 환경이 Redis 에 붙지 못하던 원인을 찾음. pod 가 로드밸런서에 등록되지 않은 가용영역으로 옮겨가 있었음</li>
+      </ul>
+      <div class="stack"><span>Kotlin</span><span>Spring</span><span>Terraform</span><span>EKS</span></div>
+    </div>
+  </section>
+
+  <!-- 7. 에이전트 개발 환경 -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">에이전트 개발 환경</div></div>
+    <div class="rows">
+      <div class="row">
+        <div class="label">무엇</div>
+        <div class="body">
+          <div>사내에서 <b>에이전트가 일할 환경</b>을 만들고 있습니다. 누가 작업하더라도 같은 환경에서 일정한 결과가 나오게 하는 것이 목표입니다. 에이전트가 쓴 코드가 리뷰와 테스트를 차례로 거친 뒤에야 사람에게 병합을 요청하도록 프론트엔드와 백엔드의 작업 퍼널을 설계했습니다. 프론트엔드는 직접 구축했고, 백엔드는 인수 당시 갖춰져 있던 하네스를 바탕으로 다시 짰습니다.</div>
+          <div class="stack"><span>Claude Code</span><span>Hooks</span><span>Skills</span></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">진행 중</div>
+        <div class="body">
+          <div>지금은 제품별 부모 저장소로 앱·서버·인프라·사내 위키를 한 환경에 묶고, 비개발자도 사내 위키를 쓸 수 있게 PR 과 자동 반영 흐름을 붙이고 있습니다. <b>아직 PR 단계입니다.</b></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">아직</div>
+        <div class="body">
+          <div>만들 때마다 부족한 점이 보여 계속 다듬고 있고, <span class="mark m1">지금 상태에 만족하지 않습니다.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 학생 시절 -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Projects</div><div class="rule"></div><div class="right">학생 시절 팀 프로젝트</div></div>
+    <div class="rows">
+      <div class="row">
+        <div class="label">모두의 택시<br><span class="meta" style="font-weight:400">2024.03 – 09</span></div>
+        <div class="body">
+          <div>대학생 택시 합승 매칭 서비스입니다. <b>9인 팀에서 iOS 담당.</b> React Native 로 지도 위에서 매칭방을 조회하고 만드는 화면과, <span class="mark m2">역지오코딩과 장소 검색으로 출발지·도착지를 정해 예상 경로를 보여주는 흐름</span>을 구현했습니다.</div>
+          <div>심사에서 기기 호환성과 개인정보 권한으로 여러 차례 반려됐고 가이드라인을 확인하며 <b>70여 번의 빌드 끝에 App Store 에 등록</b>했습니다. 출시 뒤 실사용자가 적어 홍보를 직접 해봤지만 효과가 크지 않아 서비스를 마무리했습니다.</div>
+          <div class="stack"><span>React Native</span><span>TypeScript</span><span>TanStack Query</span><span>Recoil</span></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">동글마켓<br><span class="meta" style="font-weight:400">2024.10 – 11</span></div>
+        <div class="body">
+          <div><b>리드 개발자</b>로 2주 남짓에 Next.js·Nest.js 풀스택을 완주했습니다. 팀에서 백엔드가 가능한 사람이 저뿐이라 Nest.js 를 익혀 맡았고, <span class="mark m3">토스페이먼츠 결제를 주문 생성부터 결제 성공 후 상태 갱신까지 엔드투엔드로</span> 구현했습니다.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">블록체인 전자투표<br><span class="meta" style="font-weight:400">2023.09 – 12</span></div>
+        <div class="body">
+          <div>학부 종합설계. 「블록체인을 활용한 신뢰성 있는 전자투표 플랫폼과 인공지능 활용방안 연구」로 논문을 냈습니다. 저는 <b>프론트엔드와 UI/UX 를 맡아 Figma 로 화면을 설계</b>하고 Next.js 와 TypeScript 로 구현했으며, 투표율과 득표율 추이를 차트로 시각화했습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 마무리 -->
+  <section class="slide">
+    <div class="head"><div class="kicker">Links</div><div class="rule"></div></div>
+    <div class="links">
+      <div class="lk">
+        <div class="t">korean-tone</div>
+        <div class="u">github.com/fromshim/korean-tone</div>
+        <div class="d">한국어 어투 교정 규칙을 훅으로 자동 적용하는 Claude Code 플러그인. 평가셋과 평가 스크립트를 갖춰 규칙을 고쳤을 때 무엇이 나빠졌는지 확인할 수 있습니다. 만드는 게 좋아서 만든 개인 도구이고 코드는 AI 가 썼습니다.</div>
+      </div>
+      <div class="lk">
+        <div class="t">askin</div>
+        <div class="u">get-askin.vercel.app</div>
+        <div class="d">에이전트 하네스가 실제로 쓰이는지 점검해 고치는 도구. 프로젝트별 하네싱 구조를 그래프로 시각화합니다. 개인 도구이고 코드는 AI 가 썼습니다.</div>
+      </div>
+      <div class="lk">
+        <div class="t">rescoop</div>
+        <div class="u">app.rescoop.ai</div>
+        <div class="d">담당한 제품 중 유일하게 공개된 실서비스입니다.</div>
+      </div>
+      <div class="lk">
+        <div class="t">개인 서비스</div>
+        <div class="u">github.com/seungboshim</div>
+        <div class="d">2026년 여름 여섯 종을 기획부터 구현까지 AI 에 맡겨 만들어 봤고, 서비스로 런칭한 것은 아직 없습니다. 만드는 게 좋아서 계속 만듭니다. git-graph(github.com/fromshim/git-graph)는 공개했고 매일 씁니다.</div>
+      </div>
+    </div>
+    <div class="foot">
+      <div>drivL 과 국책과제 플랫폼은 공개 URL 이 없습니다. 링크로 증명하지 못하는 실무는 문서로 남겨두었습니다.</div>
+      <div>2026.09</div>
+    </div>
+  </section>
+
+</div>
